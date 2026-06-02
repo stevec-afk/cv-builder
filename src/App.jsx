@@ -1,9 +1,15 @@
+import Preview from "./components/Preview";
+import Sidebar from "./components/Sidebar";
+import Workspace from "./components/Workspace";
+
 function App() {
   return (
-    <div>
-      <h1>CV Builder Application</h1>
+    <div className="app-layout">
+      <Sidebar />
+      <Workspace />
+      <Preview />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
