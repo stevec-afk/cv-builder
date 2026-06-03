@@ -1,7 +1,13 @@
-function Workspace() {
+import GeneralForm from "./GeneralForm";
+
+function Workspace(props) {
   return (
     <div className="workspace-column">
-      <p>Dynamic Workspace (Forms/Settings)</p>
+      <h1>CV Builder</h1>
+      <GeneralForm
+        generalData={props.generalData}
+        onGeneralChange={props.onGeneralChange}
+      />
     </div>
   );
 }
