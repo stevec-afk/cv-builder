@@ -1,7 +1,11 @@
-function Preview() {
+import GeneralPreview from "./GeneralPreview";
+
+function Preview(props) {
   return (
     <div className="preview-column">
-      <p>Live CV Preview (Locked Sheet)</p>
+      <div className="resume-sheet">
+        <GeneralPreview generalData={props.cvData.general} />
+      </div>
     </div>
   );
 }
