@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function EducationForm(props) {
   const [isEditing, setIsEditing] = useState(true);
-  useState;
+
   return (
     <div className="form-card">
       <h2>Education Experience</h2>
@@ -10,6 +10,7 @@ function EducationForm(props) {
       {isEditing ? (
         <EducationFormEdit
           educationData={props.educationData}
+          onEducationChange={props.onEducationChange}
           onSubmit={() => setIsEditing(false)}
         />
       ) : (
@@ -30,24 +31,67 @@ function EducationFormEdit(props) {
           <div className="education-form-group" key={edu.id}>
             <div className="input-group">
               <label>School / University</label>
-              <input type="text" value={edu.school} readOnly />
+              <input
+                type="text"
+                name="school"
+                value={edu.school}
+                onChange={(event) =>
+                  props.onEducationChange(
+                    edu.id,
+                    event.target.name,
+                    event.target.value,
+                  )
+                }
+              />
             </div>
 
             <div className="input-group">
               <label>Degree / Certificate</label>
-              <input type="text" value={edu.degree} readOnly />
+              <input
+                type="text"
+                name="degree"
+                value={edu.degree}
+                onChange={(event) =>
+                  props.onEducationChange(
+                    edu.id,
+                    event.target.name,
+                    event.target.value,
+                  )
+                }
+              />
             </div>
 
             <div className="input-group">
               <label>Start Year</label>
-              <input type="text" value={edu.dateFrom} readOnly />
+              <input
+                type="text"
+                name="dateFrom"
+                value={edu.dateFrom}
+                onChange={(event) =>
+                  props.onEducationChange(
+                    edu.id,
+                    event.target.name,
+                    event.target.value,
+                  )
+                }
+              />
             </div>
 
             <div className="input-group">
               <label>End Year</label>
-              <input type="text" value={edu.dateTo} readOnly />
+              <input
+                type="text"
+                name="dateTo"
+                value={edu.dateTo}
+                onChange={(event) =>
+                  props.onEducationChange(
+                    edu.id,
+                    event.target.name,
+                    event.target.value,
+                  )
+                }
+              />
             </div>
-            <hr />
           </div>
         );
       })}
@@ -55,6 +99,7 @@ function EducationFormEdit(props) {
       <button type="button" onClick={props.onSubmit}>
         Submit
       </button>
+      <hr />
     </div>
   );
 }
@@ -74,7 +119,6 @@ function EducationFormView(props) {
             <p>
               <strong>Dates:</strong> {edu.dateFrom} - {edu.dateTo}
             </p>
-            <hr />
           </div>
         );
       })}
@@ -82,6 +126,7 @@ function EducationFormView(props) {
       <button type="button" onClick={props.onEdit}>
         Edit
       </button>
+      <hr />
     </div>
   );
 }

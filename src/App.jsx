@@ -45,6 +45,21 @@ function App() {
     });
   }
 
+  function handleEducationChange(id, fieldName, newText) {
+    setCvData({
+      ...cvData,
+      education: cvData.education.map((edu) => {
+        if (edu.id === id) {
+          return {
+            ...edu,
+            [fieldName]: newText,
+          };
+        }
+        return edu;
+      }),
+    });
+  }
+
   return (
     <div className="app-layout">
       <Sidebar />
@@ -52,6 +67,7 @@ function App() {
         generalData={cvData.general}
         educationData={cvData.education}
         onGeneralChange={handleGeneralChange}
+        onEducationChange={handleEducationChange}
       />
       <Preview cvData={cvData} />
     </div>

@@ -9,7 +9,10 @@ function Workspace(props) {
         generalData={props.generalData}
         onGeneralChange={props.onGeneralChange}
       />
-      <EducationForm educationData={props.educationData} />
+      <EducationForm
+        educationData={props.educationData}
+        onEducationChange={props.onEducationChange}
+      />
     </div>
   );
 }
