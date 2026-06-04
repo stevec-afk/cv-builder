@@ -50,6 +50,7 @@ function App() {
       <Sidebar />
       <Workspace
         generalData={cvData.general}
+        educationData={cvData.education}
         onGeneralChange={handleGeneralChange}
       />
       <Preview cvData={cvData} />

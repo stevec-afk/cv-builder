@@ -1,4 +1,5 @@
 import GeneralForm from "./GeneralForm";
+import EducationForm from "./EducationForm";
 
 function Workspace(props) {
   return (
@@ -8,6 +9,7 @@ function Workspace(props) {
         generalData={props.generalData}
         onGeneralChange={props.onGeneralChange}
       />
+      <EducationForm educationData={props.educationData} />
     </div>
   );
 }
