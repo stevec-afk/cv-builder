@@ -1,4 +1,5 @@
 import { useState } from "react";
+import InputGroup from "./InputGroup";
 
 function EducationForm(props) {
   const [isEditing, setIsEditing] = useState(true);
@@ -14,7 +15,10 @@ function EducationForm(props) {
           onSubmit={() => setIsEditing(false)}
         />
       ) : (
-        <EducationFormView educationData={props.educationData} onEdit={() => setIsEditing(true)} />
+        <EducationFormView
+          educationData={props.educationData}
+          onEdit={() => setIsEditing(true)}
+        />
       )}
     </div>
   );
@@ -23,59 +27,35 @@ function EducationForm(props) {
 function EducationFormEdit(props) {
   return (
     <div className="form-inputs">
-      {props.educationData.map((edu) => {
-        return (
-          <div className="education-form-group" key={edu.id}>
-            <div className="input-group">
-              <label>School / University</label>
-              <input
-                type="text"
-                name="school"
-                value={edu.school}
-                onChange={(event) =>
-                  props.onEducationChange(edu.id, event.target.name, event.target.value)
-                }
-              />
-            </div>
-
-            <div className="input-group">
-              <label>Degree / Certificate</label>
-              <input
-                type="text"
-                name="degree"
-                value={edu.degree}
-                onChange={(event) =>
-                  props.onEducationChange(edu.id, event.target.name, event.target.value)
-                }
-              />
-            </div>
-
-            <div className="input-group">
-              <label>Start Year</label>
-              <input
-                type="text"
-                name="dateFrom"
-                value={edu.dateFrom}
-                onChange={(event) =>
-                  props.onEducationChange(edu.id, event.target.name, event.target.value)
-                }
-              />
-            </div>
-
-            <div className="input-group">
-              <label>End Year</label>
-              <input
-                type="text"
-                name="dateTo"
-                value={edu.dateTo}
-                onChange={(event) =>
-                  props.onEducationChange(edu.id, event.target.name, event.target.value)
-                }
-              />
-            </div>
-          </div>
-        );
-      })}
+      {props.educationData.map((edu) => (
+        <div className="education-form-group" key={edu.id}>
+          <InputGroup
+            label="School / University"
+            name="school"
+            value={edu.school}
+            onChange={(name, val) => props.onEducationChange(edu.id, name, val)}
+          />
+          <InputGroup
+            label="Degree / Certificate"
+            name="degree"
+            value={edu.degree}
+            onChange={(name, val) => props.onEducationChange(edu.id, name, val)}
+          />
+          <InputGroup
+            label="Start Year"
+            name="dateFrom"
+            value={edu.dateFrom}
+            onChange={(name, val) => props.onEducationChange(edu.id, name, val)}
+          />
+          <InputGroup
+            label="End Year"
+            name="dateTo"
+            value={edu.dateTo}
+            onChange={(name, val) => props.onEducationChange(edu.id, name, val)}
+          />
+          <hr />
+        </div>
+      ))}
 
       <button type="button" onClick={props.onSubmit}>
         Submit

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import InputGroup from "./InputGroup";
 
 function GeneralForm(props) {
   const [isEditing, setIsEditing] = useState(true);
@@ -15,7 +16,10 @@ function GeneralForm(props) {
         />
       ) : (
         /* --- LAYOUT B: LOCKED SUBMITTED MODE --- */
-        <GeneralFormView generalData={props.generalData} onEdit={() => setIsEditing(true)} />
+        <GeneralFormView
+          generalData={props.generalData}
+          onEdit={() => setIsEditing(true)}
+        />
       )}
     </div>
   );
@@ -24,45 +28,35 @@ function GeneralForm(props) {
 function GeneralFormEdit(props) {
   return (
     <div className="form-inputs">
-      <div className="input-group">
-        <label>Full Name</label>
-        <input
-          type="text"
-          name="fullName"
-          value={props.generalData.fullName}
-          onChange={(event) => props.onGeneralChange(event.target.name, event.target.value)}
-        />
-      </div>
+      <InputGroup
+        label="Full Name"
+        name="fullName"
+        value={props.generalData.fullName}
+        onChange={props.onGeneralChange}
+      />
 
-      <div className="input-group">
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={props.generalData.email}
-          onChange={(event) => props.onGeneralChange(event.target.name, event.target.value)}
-        />
-      </div>
+      <InputGroup
+        label="Email"
+        type="email"
+        name="email"
+        value={props.generalData.email}
+        onChange={props.onGeneralChange}
+      />
 
-      <div className="input-group">
-        <label>Phone Number</label>
-        <input
-          type="tel"
-          name="phone"
-          value={props.generalData.phone}
-          onChange={(event) => props.onGeneralChange(event.target.name, event.target.value)}
-        />
-      </div>
+      <InputGroup
+        label="Phone Number"
+        type="tel"
+        name="phone"
+        value={props.generalData.phone}
+        onChange={props.onGeneralChange}
+      />
 
-      <div className="input-group">
-        <label>Location</label>
-        <input
-          type="text"
-          name="location"
-          value={props.generalData.location}
-          onChange={(event) => props.onGeneralChange(event.target.name, event.target.value)}
-        />
-      </div>
+      <InputGroup
+        label="Location"
+        name="location"
+        value={props.generalData.location}
+        onChange={props.onGeneralChange}
+      />
 
       <button type="button" onClick={props.onSubmit}>
         Submit

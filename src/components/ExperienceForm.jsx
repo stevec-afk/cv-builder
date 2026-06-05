@@ -1,4 +1,5 @@
 import { useState } from "react";
+import InputGroup from "./InputGroup";
 
 function ExperienceForm(props) {
   const [isEditing, setIsEditing] = useState(true);
@@ -29,54 +30,30 @@ function ExperienceFormEdit(props) {
       {props.experienceData.map((exp) => {
         return (
           <div className="experience-form-group" key={exp.id}>
-            <div className="input-group">
-              <label>Company Name</label>
-              <input
-                type="text"
-                name="company"
-                value={exp.company}
-                onChange={(event) =>
-                  props.onExperienceChange(exp.id, event.target.name, event.target.value)
-                }
-              />
-            </div>
-
-            <div className="input-group">
-              <label>Position Title</label>
-              <input
-                type="text"
-                name="position"
-                value={exp.position}
-                onChange={(event) =>
-                  props.onExperienceChange(exp.id, event.target.name, event.target.value)
-                }
-              />
-            </div>
-
-            <div className="input-group">
-              <label>Start Year</label>
-              <input
-                type="text"
-                name="dateFrom"
-                value={exp.dateFrom}
-                onChange={(event) =>
-                  props.onExperienceChange(exp.id, event.target.name, event.target.value)
-                }
-              />
-            </div>
-
-            <div className="input-group">
-              <label>End Year</label>
-              <input
-                type="text"
-                name="dateTo"
-                value={exp.dateTo}
-                onChange={(event) =>
-                  props.onExperienceChange(exp.id, event.target.name, event.target.value)
-                }
-              />
-            </div>
-
+            <InputGroup
+              label="Company Name"
+              name="company"
+              value={exp.company}
+              onChange={(name, value) => props.onExperienceChange(exp.id, name, value)}
+            />
+            <InputGroup
+              label="Position Title"
+              name="position"
+              value={exp.position}
+              onChange={(name, value) => props.onExperienceChange(exp.id, name, value)}
+            />
+            <InputGroup
+              label="Start Year"
+              name="dateFrom"
+              value={exp.dateFrom}
+              onChange={(name, value) => props.onExperienceChange(exp.id, name, value)}
+            />
+            <InputGroup
+              label="End Year"
+              name="dateTo"
+              value={exp.dateTo}
+              onChange={(name, value) => props.onExperienceChange(exp.id, name, value)}
+            />
             <div className="input-group">
               <label>Responsibilities</label>
               <textarea
