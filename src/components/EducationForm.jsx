@@ -14,10 +14,7 @@ function EducationForm(props) {
           onSubmit={() => setIsEditing(false)}
         />
       ) : (
-        <EducationFormView
-          educationData={props.educationData}
-          onEdit={() => setIsEditing(true)}
-        />
+        <EducationFormView educationData={props.educationData} onEdit={() => setIsEditing(true)} />
       )}
     </div>
   );
@@ -36,11 +33,7 @@ function EducationFormEdit(props) {
                 name="school"
                 value={edu.school}
                 onChange={(event) =>
-                  props.onEducationChange(
-                    edu.id,
-                    event.target.name,
-                    event.target.value,
-                  )
+                  props.onEducationChange(edu.id, event.target.name, event.target.value)
                 }
               />
             </div>
@@ -52,11 +45,7 @@ function EducationFormEdit(props) {
                 name="degree"
                 value={edu.degree}
                 onChange={(event) =>
-                  props.onEducationChange(
-                    edu.id,
-                    event.target.name,
-                    event.target.value,
-                  )
+                  props.onEducationChange(edu.id, event.target.name, event.target.value)
                 }
               />
             </div>
@@ -68,11 +57,7 @@ function EducationFormEdit(props) {
                 name="dateFrom"
                 value={edu.dateFrom}
                 onChange={(event) =>
-                  props.onEducationChange(
-                    edu.id,
-                    event.target.name,
-                    event.target.value,
-                  )
+                  props.onEducationChange(edu.id, event.target.name, event.target.value)
                 }
               />
             </div>
@@ -84,11 +69,7 @@ function EducationFormEdit(props) {
                 name="dateTo"
                 value={edu.dateTo}
                 onChange={(event) =>
-                  props.onEducationChange(
-                    edu.id,
-                    event.target.name,
-                    event.target.value,
-                  )
+                  props.onEducationChange(edu.id, event.target.name, event.target.value)
                 }
               />
             </div>

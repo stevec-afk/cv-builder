@@ -60,14 +60,30 @@ function App() {
     });
   }
 
+  function handleExperienceChange(id, fieldName, newText) {
+    setCvData({
+      ...cvData,
+      experience: cvData.experience.map((exp) => {
+        if (exp.id === id) {
+          return {
+            ...exp,
+            [fieldName]: newText,
+          };
+        }
+      }),
+    });
+  }
+
   return (
     <div className="app-layout">
       <Sidebar />
       <Workspace
         generalData={cvData.general}
         educationData={cvData.education}
+        experienceData={cvData.experience}
         onGeneralChange={handleGeneralChange}
         onEducationChange={handleEducationChange}
+        onExperienceChange={handleExperienceChange}
       />
       <Preview cvData={cvData} />
     </div>

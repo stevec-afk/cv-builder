@@ -15,10 +15,7 @@ function GeneralForm(props) {
         />
       ) : (
         /* --- LAYOUT B: LOCKED SUBMITTED MODE --- */
-        <GeneralFormView
-          generalData={props.generalData}
-          onEdit={() => setIsEditing(true)}
-        />
+        <GeneralFormView generalData={props.generalData} onEdit={() => setIsEditing(true)} />
       )}
     </div>
   );
@@ -33,9 +30,7 @@ function GeneralFormEdit(props) {
           type="text"
           name="fullName"
           value={props.generalData.fullName}
-          onChange={(event) =>
-            props.onGeneralChange(event.target.name, event.target.value)
-          }
+          onChange={(event) => props.onGeneralChange(event.target.name, event.target.value)}
         />
       </div>
 
@@ -45,9 +40,7 @@ function GeneralFormEdit(props) {
           type="email"
           name="email"
           value={props.generalData.email}
-          onChange={(event) =>
-            props.onGeneralChange(event.target.name, event.target.value)
-          }
+          onChange={(event) => props.onGeneralChange(event.target.name, event.target.value)}
         />
       </div>
 
@@ -57,9 +50,7 @@ function GeneralFormEdit(props) {
           type="tel"
           name="phone"
           value={props.generalData.phone}
-          onChange={(event) =>
-            props.onGeneralChange(event.target.name, event.target.value)
-          }
+          onChange={(event) => props.onGeneralChange(event.target.name, event.target.value)}
         />
       </div>
 
@@ -69,9 +60,7 @@ function GeneralFormEdit(props) {
           type="text"
           name="location"
           value={props.generalData.location}
-          onChange={(event) =>
-            props.onGeneralChange(event.target.name, event.target.value)
-          }
+          onChange={(event) => props.onGeneralChange(event.target.name, event.target.value)}
         />
       </div>
 

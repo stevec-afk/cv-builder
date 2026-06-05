@@ -5,7 +5,7 @@ function EducationPreview(props) {
 
       {props.educationData.map((edu) => {
         return (
-          <div className="education-item">
+          <div className="education-item" key={edu.id}>
             <h3>{edu.school}</h3>
             <p>{edu.degree}</p>
             <p>
