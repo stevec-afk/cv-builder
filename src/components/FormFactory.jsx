@@ -22,7 +22,7 @@ function FormFactory(props) {
         onFormChange={props.onFormChange}
       />
       <button className="global-save-btn" type="button" onClick={props.onSave}>
-        Save Entire CV
+        Save Changes
       </button>
     </div>
   );

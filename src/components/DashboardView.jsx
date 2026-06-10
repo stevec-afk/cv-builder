@@ -6,7 +6,7 @@ function DashboardView({ cvData, onViewChange }) {
       <div className="dashboard-card action-header">
         <h2>CV Overview</h2>
         <button type="button" onClick={() => onViewChange("editing")}>
-          ✍️ Edit Profile
+          Edit Profile
         </button>
       </div>
 

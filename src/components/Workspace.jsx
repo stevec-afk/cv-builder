@@ -13,6 +13,7 @@ function Workspace(props) {
         onFormChange={props.onFormChange}
         currentView={currentView}
         onViewChange={setCurrentView}
+        onSaveForm={() => setCurrentView("summary")}
       />
     </div>
   );

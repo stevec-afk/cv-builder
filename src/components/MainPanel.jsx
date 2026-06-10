@@ -7,7 +7,13 @@ function MainPanel(props) {
     case "layout-config":
       return <DesignSettings cvData={props.cvData} />;
     case "editing":
-      return <FormFactory cvData={props.cvData} onFormChange={props.onFormChange} />;
+      return (
+        <FormFactory
+          cvData={props.cvData}
+          onFormChange={props.onFormChange}
+          onSave={props.onSaveForm}
+        />
+      );
     default: // Default to summary view
       return <DashboardView cvData={props.cvData} onViewChange={props.onViewChange} />;
   }
