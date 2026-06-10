@@ -1,12 +1,14 @@
-function InputGroup({ label, type = "text", name, value, onChange }) {
+function InputGroup(props) {
+  const { label, name, value } = props;
+
   return (
     <div className="input-group">
       <label>{label}</label>
       <input
-        type={type}
+        type="text"
         name={name}
         value={value}
-        onChange={(event) => onChange(event.target.name, event.target.value)}
+        onChange={(e) => props.onChange(e.target.name, e.target.value)}
       />
     </div>
   );

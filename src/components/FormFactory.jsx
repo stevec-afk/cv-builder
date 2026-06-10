@@ -1,24 +1,26 @@
 import FormSection from "./FormSection";
 
 function FormFactory(props) {
+  const { general, experience, education } = props.cvData;
+
   return (
     <div className="form-factory-surface">
       <FormSection
         title="Personal Details"
         sectionName="general"
-        sectionData={props.cvData.general}
+        sectionData={general}
         onFormChange={props.onFormChange}
       />
       <FormSection
         title="Experience"
         sectionName="experience"
-        sectionData={props.cvData.experience}
+        sectionData={experience}
         onFormChange={props.onFormChange}
       />
       <FormSection
         title="Education"
         sectionName="education"
-        sectionData={props.cvData.education}
+        sectionData={education}
         onFormChange={props.onFormChange}
       />
       <button className="global-save-btn" type="button" onClick={props.onSave}>

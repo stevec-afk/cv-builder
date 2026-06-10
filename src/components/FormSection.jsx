@@ -2,10 +2,12 @@ import { useState } from "react";
 import InputGroup from "./InputGroup";
 import { formatLabel } from "../utils/helpers";
 
-function FormSection({ title, sectionName, sectionData, onFormChange }) {
+function FormSection(props) {
+  const { title, sectionName, sectionData } = props;
   const [isCollapsed, setIsCollapsed] = useState(false);
   const entriesList =
     sectionName === "general" ? [sectionData] : Object.values(sectionData);
+
   return (
     <div className="form-card">
       <div className="card-header">
@@ -28,7 +30,12 @@ function FormSection({ title, sectionName, sectionData, onFormChange }) {
                       type="button"
                       className="visibility-toggle-btn"
                       onClick={() =>
-                        onFormChange(sectionName, "isVisible", !entry.isVisible, entry.id)
+                        props.onFormChange(
+                          sectionName,
+                          "isVisible",
+                          !entry.isVisible,
+                          entry.id,
+                        )
                       }
                     >
                       {entry.isVisible ? "Visible on CV" : "Hidden from CV"}
@@ -42,7 +49,7 @@ function FormSection({ title, sectionName, sectionData, onFormChange }) {
                     name={fieldName}
                     value={entry[fieldName]}
                     onChange={(name, val) =>
-                      onFormChange(sectionName, name, val, entry.id)
+                      props.onFormChange(sectionName, name, val, entry.id)
                     }
                   />
                 );

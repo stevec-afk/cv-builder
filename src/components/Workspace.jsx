@@ -3,13 +3,14 @@ import Sidebar from "./Sidebar";
 import MainPanel from "./MainPanel";
 
 function Workspace(props) {
+  const { cvData } = props;
   const [currentView, setCurrentView] = useState("editing");
 
   return (
     <div className="workspace-column">
       <Sidebar currentView={currentView} onViewChange={setCurrentView} />
       <MainPanel
-        cvData={props.cvData}
+        cvData={cvData}
         onFormChange={props.onFormChange}
         currentView={currentView}
         onViewChange={setCurrentView}

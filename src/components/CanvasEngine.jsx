@@ -1,13 +1,13 @@
 // Helper function for the header
-function ContactHeader({ data }) {
-  if (!data.isVisible) return null;
+function ContactHeader(props) {
+  const { email, phone, location, fullName } = props.data;
   return (
     <div className="resume-header">
-      <h1>{data.fullName}</h1>
+      <h1>{fullName}</h1>
       <div className="contact-strip">
-        {data.email && <span>{data.email}</span>}
-        {data.phone && <span>{data.phone}</span>}
-        {data.location && <span>{data.location}</span>}
+        {email && <span>{email}</span>}
+        {phone && <span>{phone}</span>}
+        {location && <span>{location}</span>}
       </div>
     </div>
   );

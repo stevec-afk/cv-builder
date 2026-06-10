@@ -1,11 +1,12 @@
 import { formatLabel } from "../utils/helpers";
 
-function DashboardView({ cvData, onViewChange }) {
+function DashboardView(props) {
+  const { cvData } = props;
   return (
     <div className="dashboard-view-surface">
       <div className="dashboard-card action-header">
         <h2>CV Overview</h2>
-        <button type="button" onClick={() => onViewChange("editing")}>
+        <button type="button" onClick={() => props.onViewChange("editing")}>
           Edit Profile
         </button>
       </div>
