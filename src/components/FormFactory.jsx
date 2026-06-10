@@ -10,15 +10,15 @@ function FormFactory(props) {
         onFormChange={props.onFormChange}
       />
       <FormSection
-        title="Education Experience"
-        sectionName="education"
-        sectionData={props.cvData.education}
+        title="Experience"
+        sectionName="experience"
+        sectionData={props.cvData.experience}
         onFormChange={props.onFormChange}
       />
       <FormSection
-        title="Work Experience"
-        sectionName="experience"
-        sectionData={props.cvData.experience}
+        title="Education"
+        sectionName="education"
+        sectionData={props.cvData.education}
         onFormChange={props.onFormChange}
       />
       <button className="global-save-btn" type="button" onClick={props.onSave}>

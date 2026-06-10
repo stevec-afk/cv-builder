@@ -8,37 +8,12 @@ function DesignSettings() {
         workspace desk surface!
       </p>
 
-      {/* Rough visual landmarks to map out your future design options */}
       <div className="settings-group-mock">
         <h3>Theme Colors</h3>
-        <div
-          className="mock-color-swatches"
-          style={{ display: "flex", gap: "10px", marginTop: "10px" }}
-        >
-          <div
-            style={{
-              width: "30px",
-              height: "30px",
-              borderRadius: "50%",
-              background: "#2563eb",
-            }}
-          ></div>
-          <div
-            style={{
-              width: "30px",
-              height: "30px",
-              borderRadius: "50%",
-              background: "#16a34a",
-            }}
-          ></div>
-          <div
-            style={{
-              width: "30px",
-              height: "30px",
-              borderRadius: "50%",
-              background: "#dc2626",
-            }}
-          ></div>
+        <div className="mock-swatch-list">
+          <div className="swatch-circle swatch-blue"></div>
+          <div className="swatch-circle swatch-green"></div>
+          <div className="swatch-circle swatch-red"></div>
         </div>
       </div>
     </div>

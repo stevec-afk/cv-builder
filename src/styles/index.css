@@ -21,14 +21,17 @@ body {
   background-color: #1e1e1e;
   color: white;
   padding: 10px;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .workspace-column {
-  flex: 1;
-  background-color: #ffffff;
-  padding: 20px;
-  border-right: 1px solid #e0e0e0;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 60%;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 .preview-column {
@@ -37,4 +40,55 @@ body {
   padding: 20px;
   display: flex;
   justify-content: center;
+}
+
+.form-factory-surface {
+  flex-grow: 1;
+  padding-left: 20px;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* Layout Configuration Panel Styles */
+.design-settings-surface {
+  padding: 20px;
+}
+
+.placeholder-text {
+  color: #64748b;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Horizontal Swatch Row Engine */
+.mock-swatch-list {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Base Swatch Shape Blueprint */
+.swatch-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.swatch-circle:hover {
+  transform: scale(1.1);
+}
+
+/* Individual Color Classes */
+.swatch-blue {
+  background-color: #2563eb;
+}
+
+.swatch-green {
+  background-color: #16a34a;
+}
+
+.swatch-red {
+  background-color: #dc2626;
 }
