@@ -31,9 +31,7 @@ function ResumeSection({ title, items }) {
             </span>
           </div>
           <h4>{item.degree || item.position}</h4>
-          {item.description && (
-            <p className="item-description">{item.description}</p>
-          )}
+          {item.description && <p className="item-description">{item.description}</p>}
         </div>
       ))}
     </div>
@@ -44,10 +42,7 @@ function CanvasEngine({ cvData }) {
   return (
     <div className="canvas-engine-document">
       <ContactHeader data={cvData.general} />
-      <ResumeSection
-        title="Professional Experience"
-        items={cvData.experience}
-      />
+      <ResumeSection title="Professional Experience" items={cvData.experience} />
       <ResumeSection title="Education" items={cvData.education} />
     </div>
   );

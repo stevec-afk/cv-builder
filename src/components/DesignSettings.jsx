@@ -3,9 +3,8 @@ function DesignSettings() {
     <div className="design-settings-surface dashboard-card">
       <h2>Layout Configuration</h2>
       <p className="placeholder-text">
-        This is your layout control panel. Future custom theme color pickers,
-        font styles, and template switches will be managed right here on your
-        workspace desk surface!
+        This is your layout control panel. Future custom theme color pickers, font styles,
+        and template switches will be managed right here on your workspace desk surface!
       </p>
 
       <div className="settings-group-mock">

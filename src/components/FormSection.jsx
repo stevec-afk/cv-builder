@@ -14,6 +14,7 @@ function FormSection({ title, sectionName, sectionData, onFormChange }) {
           {isCollapsed ? " Expand ⌄" : " Collapse ⌃"}
         </button>
       </div>
+
       {!isCollapsed && (
         <div className="card-body">
           {entriesList.map((entry) => (
@@ -27,12 +28,7 @@ function FormSection({ title, sectionName, sectionData, onFormChange }) {
                       type="button"
                       className="visibility-toggle-btn"
                       onClick={() =>
-                        onFormChange(
-                          sectionName,
-                          "isVisible",
-                          !entry.isVisible,
-                          entry.id,
-                        )
+                        onFormChange(sectionName, "isVisible", !entry.isVisible, entry.id)
                       }
                     >
                       {entry.isVisible ? "Visible on CV" : "Hidden from CV"}
