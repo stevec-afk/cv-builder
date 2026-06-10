@@ -8,7 +8,6 @@ const defaultCvData = {
     email: "janedoe@example.com",
     phone: "(555) 123-4567",
     location: "Halifax, NS, Canada",
-    isVisible: true,
   },
   education: {
     "edu-1": {
@@ -25,10 +24,10 @@ const defaultCvData = {
       id: "exp-1",
       company: "Tech Corp Inc.",
       position: "Frontend Developer",
-      responsibilities:
-        "Developed user interfaces, managed component states, and collaborated with design teams.",
       dateFrom: "2022",
       dateTo: "Present",
+      description:
+        "Developed user interfaces, managed component states, and collaborated with design teams.",
       isVisible: true,
     },
   },

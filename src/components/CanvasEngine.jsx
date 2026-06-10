@@ -31,8 +31,8 @@ function ResumeSection({ title, items }) {
             </span>
           </div>
           <h4>{item.degree || item.position}</h4>
-          {item.responsibilities && (
-            <p className="item-description">{item.responsibilities}</p>
+          {item.description && (
+            <p className="item-description">{item.description}</p>
           )}
         </div>
       ))}

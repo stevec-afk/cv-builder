@@ -35,9 +35,7 @@ function FormSection({ title, sectionName, sectionData, onFormChange }) {
                         )
                       }
                     >
-                      {entry.isVisible
-                        ? "👁️ Visible on CV"
-                        : "🙈 Hidden from CV"}
+                      {entry.isVisible ? "Visible on CV" : "Hidden from CV"}
                     </button>
                   );
                 }
