@@ -1,19 +1,18 @@
-import GeneralForm from "./GeneralForm";
-import EducationForm from "./EducationForm";
-import ExperienceForm from "./ExperienceForm";
+import { useState } from "react";
+import Sidebar from "./Sidebar";
+import MainPanel from "./MainPanel";
 
 function Workspace(props) {
+  const [currentView, setCurrentView] = useState("editing");
+
   return (
     <div className="workspace-column">
-      <h1>CV Builder</h1>
-      <GeneralForm generalData={props.generalData} onGeneralChange={props.onGeneralChange} />
-      <EducationForm
-        educationData={props.educationData}
-        onEducationChange={props.onEducationChange}
-      />
-      <ExperienceForm
-        experienceData={props.experienceData}
-        onExperienceChange={props.onExperienceChange}
+      <Sidebar currentView={currentView} onViewChange={setCurrentView} />
+      <MainPanel
+        cvData={props.cvData}
+        onFormChange={props.onFormChange}
+        currentView={currentView}
+        onViewChange={setCurrentView}
       />
     </div>
   );

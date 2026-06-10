@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Preview from "./components/Preview";
-import Sidebar from "./components/Sidebar";
 import Workspace from "./components/Workspace";
 
 const defaultCvData = {
@@ -9,18 +8,20 @@ const defaultCvData = {
     email: "janedoe@example.com",
     phone: "(555) 123-4567",
     location: "Halifax, NS, Canada",
+    isVisible: true,
   },
-  education: [
-    {
+  education: {
+    "edu-1": {
       id: "edu-1",
       school: "State University",
       degree: "B.S. in Computer Science",
       dateFrom: "2018",
       dateTo: "2022",
+      isVisible: true,
     },
-  ],
-  experience: [
-    {
+  },
+  experience: {
+    "exp-1": {
       id: "exp-1",
       company: "Tech Corp Inc.",
       position: "Frontend Developer",
@@ -28,63 +29,37 @@ const defaultCvData = {
         "Developed user interfaces, managed component states, and collaborated with design teams.",
       dateFrom: "2022",
       dateTo: "Present",
+      isVisible: true,
     },
-  ],
+  },
 };
 
 function App() {
   const [cvData, setCvData] = useState(defaultCvData);
 
-  function handleGeneralChange(fieldName, newText) {
+  function handleFormChange(sectionName, fieldName, newText, id = null) {
     setCvData({
       ...cvData,
-      general: {
-        ...cvData.general,
-        [fieldName]: newText,
-      },
-    });
-  }
-
-  function handleEducationChange(id, fieldName, newText) {
-    setCvData({
-      ...cvData,
-      education: cvData.education.map((edu) => {
-        if (edu.id === id) {
-          return {
-            ...edu,
+      [sectionName]: id
+        ? {
+            // Nested list object (Education / Experience)
+            ...cvData[sectionName],
+            [id]: {
+              ...cvData[sectionName][id],
+              [fieldName]: newText,
+            },
+          }
+        : {
+            // Flat object (general)
+            ...cvData[sectionName],
             [fieldName]: newText,
-          };
-        }
-        return edu;
-      }),
-    });
-  }
-
-  function handleExperienceChange(id, fieldName, newText) {
-    setCvData({
-      ...cvData,
-      experience: cvData.experience.map((exp) => {
-        if (exp.id === id) {
-          return {
-            ...exp,
-            [fieldName]: newText,
-          };
-        }
-      }),
+          },
     });
   }
 
   return (
     <div className="app-layout">
-      <Sidebar />
-      <Workspace
-        generalData={cvData.general}
-        educationData={cvData.education}
-        experienceData={cvData.experience}
-        onGeneralChange={handleGeneralChange}
-        onEducationChange={handleEducationChange}
-        onExperienceChange={handleExperienceChange}
-      />
+      <Workspace cvData={cvData} onFormChange={handleFormChange} />
       <Preview cvData={cvData} />
     </div>
   );
