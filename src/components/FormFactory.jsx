@@ -4,7 +4,7 @@ function FormFactory(props) {
   const { general, experience, education } = props.cvData;
 
   return (
-    <div className="form-factory-surface">
+    <div className="form-container">
       <FormSection
         title="Personal Details"
         sectionName="general"

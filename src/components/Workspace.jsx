@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import MainPanel from "./MainPanel";
+import "./Workspace.css";
 
 function Workspace(props) {
   const { cvData } = props;
