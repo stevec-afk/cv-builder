@@ -1,4 +1,5 @@
-import { Document, Page, Text, View, StyleSheet, PDFViewer } from "@react-pdf/renderer";
+import { useEffect, useState } from "react";
+import { Document, Page, Text, View, StyleSheet, usePDF } from "@react-pdf/renderer";
 import "./Preview.css";
 
 // PDF blueprint styles
@@ -75,11 +76,53 @@ function ResumeDocument(props) {
 }
 
 function Preview(props) {
+  const [debouncedCvData, setDebouncedCvData] = useState(props.cvData);
+  const [base64Url, setBase64Url] = useState("");
+
+  // 🚨 OPTIMIZATION 1: THE DEBOUNCE FIREBREAK
+  // As the user types rapidly, this hook absorbs the keystrokes.
+  // It delays updating the heavy PDF engine until the typing pauses for 350ms.
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedCvData(props.cvData);
+    }, 350);
+
+    return () => clearTimeout(handler);
+  }, [props.cvData]);
+
+  // 🚨 OPTIMIZATION 2: THE BACKGROUND COMPILER HOOK
+  // Generates the PDF file blob silently in memory, listening ONLY to debounced data.
+  const [instance, updateInstance] = usePDF({
+    document: <ResumeDocument cvData={debouncedCvData} />,
+  });
+
+  // Whenever the debounced data changes, force the hook engine to re-compile
+  useEffect(() => {
+    updateInstance();
+  }, [debouncedCvData, updateInstance]);
+
+  // 🚨 OPTIMIZATION 3: THE BASE64 TRANSLATOR
+  // Takes the compiled binary blob and serializes it into a standard Base64 Data URI string.
+  useEffect(() => {
+    if (instance.blob) {
+      const reader = new FileReader();
+      reader.readAsDataURL(instance.blob);
+      reader.onloadend = () => {
+        setBase64Url(reader.result);
+      };
+    }
+  }, [instance.blob]);
+
   return (
     <div className="preview-column">
-      <PDFViewer style={{ width: "100%", height: "100%", border: "none" }}>
-        <ResumeDocument cvData={props.cvData} />
-      </PDFViewer>
+      {base64Url ? (
+        <iframe
+          src={base64Url}
+          style={{ width: "100%", height: "100%", border: "none" }}
+        />
+      ) : (
+        <div className="pdf-loading-placeholder">Compiling Live Document...</div>
+      )}
     </div>
   );
 }

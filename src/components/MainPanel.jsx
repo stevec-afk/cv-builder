@@ -1,19 +1,15 @@
-import FormFactory from "./FormFactory";
+import FormContainer from "./FormContainer";
 import DashboardView from "./DashboardView";
 import DesignSettings from "./DesignSettings";
 
 function MainPanel(props) {
-  switch (props.currentView) {
+  const { currentView, cvData, onFormChange } = props;
+
+  switch (currentView) {
     case "layout-config":
-      return <DesignSettings cvData={props.cvData} />;
+      return <DesignSettings cvData={cvData} />;
     case "editing":
-      return (
-        <FormFactory
-          cvData={props.cvData}
-          onFormChange={props.onFormChange}
-          onSave={props.onSaveForm}
-        />
-      );
+      return <FormContainer cvData={cvData} onFormChange={onFormChange} />;
     default: // Default to summary view
       return <DashboardView cvData={props.cvData} onViewChange={props.onViewChange} />;
   }

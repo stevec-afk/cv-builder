@@ -4,6 +4,7 @@
   align-items: stretch;
   flex: 0 0 55%;
   height: 100%;
+  gap: 20px;
 
   background-color: var(--bg-panel);
   border: 1px solid var(--border-subtle);
