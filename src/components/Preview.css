@@ -6,6 +6,5 @@
   min-width: 450px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   box-sizing: border-box;
 }

@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 function FormSection(props) {
-  const { title, fields, data, onFieldChange } = props;
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { title, fields, data, onFieldChange, onDelete } = props;
+  const [isSubmitted, setIsSubmitted] = useState(true);
 
   return (
     <div className="form-section-card">
@@ -15,6 +15,11 @@ function FormSection(props) {
         >
           {isSubmitted ? "Edit" : "Submit"}
         </button>
+        {onDelete && (
+          <button type="button" onClick={onDelete} className="delete-btn">
+            Delete
+          </button>
+        )}
       </div>
 
       <div className="form-fields-container">

@@ -1,7 +1,7 @@
 import FormSection from "./FormSection";
 
 function FormContainer(props) {
-  const { cvData, onFormChange } = props;
+  const { cvData, onFormChange, onAddEducation, onAddExperience, onDeleteItem } = props;
   const { general, education, experience } = cvData;
 
   // Centralized definitions of form fields
@@ -39,25 +39,6 @@ function FormContainer(props) {
         }
       />
 
-      {/* Education Section */}
-      <div className="section-group">
-        <h2>Education</h2>
-        {education.map((edu) => (
-          <FormSection
-            key={edu.id}
-            title={edu.school || "New Education Entry"}
-            fields={educationFields}
-            data={edu}
-            onFieldChange={(fieldName, newText) =>
-              onFormChange("education", fieldName, newText, edu.id)
-            }
-          />
-        ))}
-        <button type="button" className="add-btn">
-          + Add Education
-        </button>
-      </div>
-
       {/* Experience section */}
       <div className="section-group">
         <h2>Professional Experience</h2>
@@ -70,10 +51,31 @@ function FormContainer(props) {
             onFieldChange={(fieldName, newText) =>
               onFormChange("experience", fieldName, newText, exp.id)
             }
+            onDelete={() => onDeleteItem("experience", exp.id)}
           />
         ))}
-        <button type="button" className="add-btn">
+        <button type="button" onClick={onAddExperience} className="add-btn">
           + Add Experience
+        </button>
+      </div>
+
+      {/* Education Section */}
+      <div className="section-group">
+        <h2>Education</h2>
+        {education.map((edu) => (
+          <FormSection
+            key={edu.id}
+            title={edu.school || "New Education Entry"}
+            fields={educationFields}
+            data={edu}
+            onFieldChange={(fieldName, newText) =>
+              onFormChange("education", fieldName, newText, edu.id)
+            }
+            onDelete={() => onDeleteItem("education", edu.id)}
+          />
+        ))}
+        <button type="button" onClick={onAddEducation} className="add-btn">
+          + Add Education
         </button>
       </div>
     </div>

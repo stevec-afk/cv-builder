@@ -30,9 +30,22 @@ const defaultCvData = {
   ],
 };
 
+const emptyCvData = {
+  general: {
+    fullName: "",
+    email: "",
+    phone: "",
+    location: "",
+  },
+  education: [],
+  experience: [],
+};
+
 function App() {
   const [cvData, setCvData] = useState(defaultCvData);
 
+  // Handler for form changes - updates resume data in real time.
+  // This handler is passed down to components so they can interact with cvData
   function handleFormChange(sectionName, fieldName, newText, id = null) {
     setCvData({
       ...cvData,
@@ -47,12 +60,77 @@ function App() {
     });
   }
 
+  // Handlers to clear data and reload default cvData respectively
+  function handleClearCv() {
+    setCvData(emptyCvData);
+  }
+  function handleLoadExample() {
+    setCvData(defaultCvData);
+  }
+
+  // Handler to add a new education section
+  function handleAddEducation() {
+    const newEdu = {
+      id: crypto.randomUUID(),
+      school: "",
+      degree: "",
+      dateFrom: "",
+      dateTo: "",
+    };
+
+    setCvData({
+      ...cvData,
+      education: [...cvData.education, newEdu],
+    });
+  }
+
+  // Handler to add a new experience section
+  function handleAddExperience() {
+    const newExp = {
+      id: crypto.randomUUID(),
+      company: "",
+      position: "",
+      dateFrom: "",
+      dateTo: "",
+      description: "",
+    };
+
+    setCvData({
+      ...cvData,
+      experience: [...cvData.experience, newExp],
+    });
+  }
+
+  // Handler to delete an entry from experience or education sections
+  function handleDeleteItem(sectionName, id) {
+    setCvData({
+      ...cvData,
+      [sectionName]: cvData[sectionName].filter((item) => item.id !== id),
+    });
+  }
+
   return (
-    <div className="app-layout">
-      <FormContainer cvData={cvData} onFormChange={handleFormChange} />
-      <Preview cvData={cvData} />
+    <div className="app-container-wrapper">
+      <header className="global-header-bar">
+        <button type="button" onClick={handleClearCv}>
+          Clear Resume
+        </button>
+        <button type="button" onClick={handleLoadExample}>
+          Load Example
+        </button>
+      </header>
+
+      <div className="app-layout">
+        <FormContainer
+          cvData={cvData}
+          onFormChange={handleFormChange}
+          onAddEducation={handleAddEducation}
+          onAddExperience={handleAddExperience}
+          onDeleteItem={handleDeleteItem}
+        />
+        <Preview cvData={cvData} />
+      </div>
     </div>
   );
 }
-
 export default App;
