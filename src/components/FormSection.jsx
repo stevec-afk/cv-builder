@@ -1,64 +1,46 @@
 import { useState } from "react";
-import InputGroup from "./InputGroup";
-import { formatLabel } from "../utils/helpers";
 
 function FormSection(props) {
-  const { title, sectionName, sectionData } = props;
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const entriesList =
-    sectionName === "general" ? [sectionData] : Object.values(sectionData);
+  const { title, fields, data, onFieldChange } = props;
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   return (
-    <div className="form-card">
-      <div className="card-header">
-        <h2>{title}</h2>
-        <button type="button" onClick={() => setIsCollapsed(!isCollapsed)}>
-          {isCollapsed ? " Expand ⌄" : " Collapse ⌃"}
+    <div className="form-section-card">
+      <div className="form-section-header">
+        <h3>{title}</h3>
+        <button
+          type="button"
+          onClick={() => setIsSubmitted(!isSubmitted)}
+          className="toggle-mode-btn"
+        >
+          {isSubmitted ? "Edit" : "Submit"}
         </button>
       </div>
 
-      {!isCollapsed && (
-        <div className="card-body">
-          {entriesList.map((entry) => (
-            <div className="entry-row" key={entry.id || "general-row"}>
-              {Object.keys(entry).map((fieldName) => {
-                if (fieldName === "id") return null;
-                if (fieldName === "isVisible") {
-                  return (
-                    <button
-                      key={fieldName}
-                      type="button"
-                      className="visibility-toggle-btn"
-                      onClick={() =>
-                        props.onFormChange(
-                          sectionName,
-                          "isVisible",
-                          !entry.isVisible,
-                          entry.id,
-                        )
-                      }
-                    >
-                      {entry.isVisible ? "Visible on CV" : "Hidden from CV"}
-                    </button>
-                  );
-                }
-                return (
-                  <InputGroup
-                    key={fieldName}
-                    label={formatLabel(fieldName)}
-                    name={fieldName}
-                    value={entry[fieldName]}
-                    onChange={(name, val) =>
-                      props.onFormChange(sectionName, name, val, entry.id)
-                    }
-                  />
-                );
-              })}
-              <hr />
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="form-fields-container">
+        {fields.map((field) => (
+          <div key={field.key} className="input-group">
+            <label>{field.label}</label>
+
+            {isSubmitted ? (
+              <p className="read-only-text">
+                {data[field.key] || `No ${field.label.toLowerCase()} entered`}
+              </p>
+            ) : field.type === "textarea" ? (
+              <textarea
+                value={data[field.key] || ""}
+                onChange={(e) => onFieldChange(field.key, e.target.value)}
+              />
+            ) : (
+              <input
+                type="text"
+                value={data[field.key] || ""}
+                onChange={(e) => onFieldChange(field.key, e.target.value)}
+              />
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,48 +1,80 @@
+import FormSection from "./FormSection";
+
 function FormContainer(props) {
   const { cvData, onFormChange } = props;
   const { general, education, experience } = cvData;
 
+  // Centralized definitions of form fields
+  const personalFields = [
+    { label: "Full Name", key: "fullName" },
+    { label: "Email", key: "email" },
+    { label: "Phone Number", key: "phone" },
+    { label: "Location", key: "location" },
+  ];
+
+  const educationFields = [
+    { label: "School / University", key: "school" },
+    { label: "Degree", key: "degree" },
+    { label: "Start Date", key: "dateFrom" },
+    { label: "End Date", key: "dateTo" },
+  ];
+
+  const experienceFields = [
+    { label: "Company", key: "company" },
+    { label: "Position", key: "position" },
+    { label: "Start Date", key: "dateFrom" },
+    { label: "End Date", key: "dateTo" },
+    { label: "Description", key: "description", type: "textarea" },
+  ];
+
   return (
-    <div className="form-sections-stack">
-      {/* PERSONAL SECTION */}
-      <div className="form-section-card">
-        <h2>Personal Details</h2>
-        <div className="form-fields-grid">
-          {Object.keys(general).map((key) => (
-            <div key={key} className="input-group">
-              <label>{key}</label>
-              <input
-                type="text"
-                value={general[key] || ""}
-                onChange={(e) => onFormChange("general", key, e.target.value)}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+    <div className="form-container-column">
+      {/* Personal details */}
+      <FormSection
+        title="Personal Details"
+        fields={personalFields}
+        data={general}
+        onFieldChange={(fieldName, newText) =>
+          onFormChange("general", fieldName, newText)
+        }
+      />
 
-      {/* EDUCATION SECTION */}
-      <div className="form-section-card">
+      {/* Education Section */}
+      <div className="section-group">
         <h2>Education</h2>
-        <div className="repeating-rows-list">
-          {Object.values(education || {}).map((edu) => (
-            <div key={edu.id} className="row-item-summary">
-              <span>{edu.schoolName || "New Education Entry"}</span>
-            </div>
-          ))}
-        </div>
+        {education.map((edu) => (
+          <FormSection
+            key={edu.id}
+            title={edu.school || "New Education Entry"}
+            fields={educationFields}
+            data={edu}
+            onFieldChange={(fieldName, newText) =>
+              onFormChange("education", fieldName, newText, edu.id)
+            }
+          />
+        ))}
+        <button type="button" className="add-btn">
+          + Add Education
+        </button>
       </div>
 
-      {/* EXPERIENCE SECTION */}
-      <div className="form-section-card">
+      {/* Experience section */}
+      <div className="section-group">
         <h2>Professional Experience</h2>
-        <div className="repeating-rows-list">
-          {Object.values(experience || {}).map((exp) => (
-            <div key={exp.id} className="row-item-summary">
-              <span>{exp.companyName || "New Experience Entry"}</span>
-            </div>
-          ))}
-        </div>
+        {experience.map((exp) => (
+          <FormSection
+            key={exp.id}
+            title={exp.company || "New Experience Entry"}
+            fields={experienceFields}
+            data={exp}
+            onFieldChange={(fieldName, newText) =>
+              onFormChange("experience", fieldName, newText, exp.id)
+            }
+          />
+        ))}
+        <button type="button" className="add-btn">
+          + Add Experience
+        </button>
       </div>
     </div>
   );

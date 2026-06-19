@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Preview from "./components/Preview";
-import Workspace from "./components/Workspace";
+import FormContainer from "./components/FormContainer";
 
 const defaultCvData = {
   general: {
@@ -9,28 +9,25 @@ const defaultCvData = {
     phone: "(555) 123-4567",
     location: "Halifax, NS, Canada",
   },
-  education: {
-    "edu-1": {
+  education: [
+    {
       id: "edu-1",
       school: "State University",
       degree: "B.S. in Computer Science",
       dateFrom: "2018",
       dateTo: "2022",
-      isVisible: true,
     },
-  },
-  experience: {
-    "exp-1": {
+  ],
+  experience: [
+    {
       id: "exp-1",
       company: "Tech Corp Inc.",
       position: "Frontend Developer",
       dateFrom: "2022",
       dateTo: "Present",
-      description:
-        "Developed user interfaces, managed component states, and collaborated with design teams.",
-      isVisible: true,
+      description: "Developed user interfaces.",
     },
-  },
+  ],
 };
 
 function App() {
@@ -40,16 +37,10 @@ function App() {
     setCvData({
       ...cvData,
       [sectionName]: id
-        ? {
-            // Nested list object (Education / Experience)
-            ...cvData[sectionName],
-            [id]: {
-              ...cvData[sectionName][id],
-              [fieldName]: newText,
-            },
-          }
+        ? cvData[sectionName].map((item) =>
+            item.id === id ? { ...item, [fieldName]: newText } : item,
+          )
         : {
-            // Flat object (general)
             ...cvData[sectionName],
             [fieldName]: newText,
           },
@@ -58,7 +49,7 @@ function App() {
 
   return (
     <div className="app-layout">
-      <Workspace cvData={cvData} onFormChange={handleFormChange} />
+      <FormContainer cvData={cvData} onFormChange={handleFormChange} />
       <Preview cvData={cvData} />
     </div>
   );
