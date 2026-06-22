@@ -30,14 +30,17 @@ function FormContainer(props) {
   return (
     <div className="form-container-column">
       {/* Personal details */}
-      <FormSection
-        title="Personal Details"
-        fields={personalFields}
-        data={general}
-        onFieldChange={(fieldName, newText) =>
-          onFormChange("general", fieldName, newText)
-        }
-      />
+      <div className="section-group">
+        <h2>Personal Details</h2>
+        <FormSection
+          title="Personal Details"
+          fields={personalFields}
+          data={general}
+          onFieldChange={(fieldName, newText) =>
+            onFormChange("general", fieldName, newText)
+          }
+        />
+      </div>
 
       {/* Experience section */}
       <div className="section-group">

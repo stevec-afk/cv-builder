@@ -1,13 +1,12 @@
 import { useState } from "react";
 
 function FormSection(props) {
-  const { title, fields, data, onFieldChange, onDelete } = props;
+  const { fields, data, onFieldChange, onDelete } = props;
   const [isSubmitted, setIsSubmitted] = useState(true);
 
   return (
     <div className="form-section-card">
       <div className="form-section-header">
-        <h3>{title}</h3>
         <button
           type="button"
           onClick={() => setIsSubmitted(!isSubmitted)}
