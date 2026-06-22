@@ -112,12 +112,31 @@ function App() {
   return (
     <div className="app-container-wrapper">
       <header className="global-header-bar">
-        <button type="button" onClick={handleClearCv}>
-          Clear Resume
-        </button>
-        <button type="button" onClick={handleLoadExample}>
-          Load Example
-        </button>
+        <div className="header-title-group">
+          <h1>CV Builder</h1>
+          <div className="project-credits">
+            <p className="credits-author">
+              Built by{" "}
+              <a href="https://github.com" target="_blank" rel="noreferrer">
+                Steve C.
+              </a>
+            </p>
+            <p className="credits-source">
+              <a href="https://github.com/cv-builder" target="_blank" rel="noreferrer">
+                view source code on github
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div className="header-actions-group">
+          <button type="button" onClick={handleClearCv}>
+            Clear Resume
+          </button>
+          <button type="button" onClick={handleLoadExample}>
+            Load Example
+          </button>
+        </div>
       </header>
 
       <div className="app-layout">

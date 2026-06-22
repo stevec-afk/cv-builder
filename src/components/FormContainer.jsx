@@ -1,10 +1,10 @@
 import FormSection from "./FormSection";
+import FormCard from "./FormCard";
 
 function FormContainer(props) {
   const { cvData, onFormChange, onAddEducation, onAddExperience, onDeleteItem } = props;
   const { general, education, experience } = cvData;
 
-  // Centralized definitions of form fields
   const personalFields = [
     { label: "Full Name", key: "fullName" },
     { label: "Email", key: "email" },
@@ -29,58 +29,70 @@ function FormContainer(props) {
 
   return (
     <div className="form-container-column">
-      {/* Personal details */}
-      <div className="section-group">
-        <h2>Personal Details</h2>
-        <FormSection
-          title="Personal Details"
+      {/*Personal Details section */}
+      <FormSection title="Personal Details">
+        <FormCard
           fields={personalFields}
           data={general}
           onFieldChange={(fieldName, newText) =>
             onFormChange("general", fieldName, newText)
           }
         />
-      </div>
-
-      {/* Experience section */}
-      <div className="section-group">
-        <h2>Professional Experience</h2>
+      </FormSection>
+      {/*Experience Section*/}
+      <FormSection title="Professional Experience">
         {experience.map((exp) => (
-          <FormSection
-            key={exp.id}
-            title={exp.company || "New Experience Entry"}
-            fields={experienceFields}
-            data={exp}
-            onFieldChange={(fieldName, newText) =>
-              onFormChange("experience", fieldName, newText, exp.id)
-            }
-            onDelete={() => onDeleteItem("experience", exp.id)}
-          />
+          <div key={exp.id} className="nested-row-item-card">
+            <div className="nested-card-header">
+              <h3>{exp.company || "New Experience Entry"}</h3>
+              <button
+                type="button"
+                onClick={() => onDeleteItem("experience", exp.id)}
+                className="delete-btn"
+              >
+                Delete
+              </button>
+            </div>
+            <FormCard
+              fields={experienceFields}
+              data={exp}
+              onFieldChange={(fieldName, newText) =>
+                onFormChange("experience", fieldName, newText, exp.id)
+              }
+            />
+          </div>
         ))}
         <button type="button" onClick={onAddExperience} className="add-btn">
           + Add Experience
         </button>
-      </div>
-
-      {/* Education Section */}
-      <div className="section-group">
-        <h2>Education</h2>
+      </FormSection>
+      {/*Education Section*/}
+      <FormSection title="Education">
         {education.map((edu) => (
-          <FormSection
-            key={edu.id}
-            title={edu.school || "New Education Entry"}
-            fields={educationFields}
-            data={edu}
-            onFieldChange={(fieldName, newText) =>
-              onFormChange("education", fieldName, newText, edu.id)
-            }
-            onDelete={() => onDeleteItem("education", edu.id)}
-          />
+          <div key={edu.id} className="nested-row-item-card">
+            <div className="nested-card-header">
+              <h3>{edu.school || "New Education Entry"}</h3>
+              <button
+                type="button"
+                onClick={() => onDeleteItem("education", edu.id)}
+                className="delete-btn"
+              >
+                Delete
+              </button>
+            </div>
+            <FormCard
+              fields={educationFields}
+              data={edu}
+              onFieldChange={(fieldName, newText) =>
+                onFormChange("education", fieldName, newText, edu.id)
+              }
+            />
+          </div>
         ))}
         <button type="button" onClick={onAddEducation} className="add-btn">
           + Add Education
         </button>
-      </div>
+      </FormSection>
     </div>
   );
 }
