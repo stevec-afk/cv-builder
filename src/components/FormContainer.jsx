@@ -1,5 +1,6 @@
 import FormSection from "./FormSection";
 import FormCard from "./FormCard";
+import Icon from "./Icons";
 
 function FormContainer(props) {
   const { cvData, onFormChange, onAddEducation, onAddExperience, onDeleteItem } = props;
@@ -49,8 +50,9 @@ function FormContainer(props) {
                 type="button"
                 onClick={() => onDeleteItem("experience", exp.id)}
                 className="delete-btn"
+                aria-label="Delete entry"
               >
-                Delete
+                <Icon name="trash" />
               </button>
             </div>
             <FormCard
@@ -74,10 +76,11 @@ function FormContainer(props) {
               <h3>{edu.school || "New Education Entry"}</h3>
               <button
                 type="button"
-                onClick={() => onDeleteItem("education", edu.id)}
+                onClick={() => onDeleteItem("experience", edu.id)}
                 className="delete-btn"
+                aria-label="Delete entry"
               >
-                Delete
+                <Icon name="trash" />
               </button>
             </div>
             <FormCard
