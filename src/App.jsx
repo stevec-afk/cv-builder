@@ -60,14 +60,6 @@ function App() {
     });
   }
 
-  // Handlers to clear data and reload default cvData respectively
-  function handleClearCv() {
-    setCvData(emptyCvData);
-  }
-  function handleLoadExample() {
-    setCvData(defaultCvData);
-  }
-
   // Handler to add a new education section
   function handleAddEducation() {
     const newEdu = {
@@ -130,10 +122,10 @@ function App() {
         </div>
 
         <div className="header-actions-group">
-          <button type="button" onClick={handleClearCv}>
+          <button type="button" onClick={() => setCvData(emptyCvData)}>
             Clear Resume
           </button>
-          <button type="button" onClick={handleLoadExample}>
+          <button type="button" onClick={() => setCvData(defaultCvData)}>
             Load Example
           </button>
         </div>
