@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "./Icons";
+import "./FormSection.css";
 
 function FormSection(props) {
   const { title, children } = props;

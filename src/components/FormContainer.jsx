@@ -1,6 +1,7 @@
 import FormSection from "./FormSection";
 import FormCard from "./FormCard";
 import Icon from "./Icons";
+import "./FormContainer.css";
 
 function FormContainer(props) {
   const { cvData, onFormChange, onAddEducation, onAddExperience, onDeleteItem } = props;

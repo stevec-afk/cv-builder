@@ -24,35 +24,6 @@ p {
   padding: 0;
 }
 
-.icon-indicator {
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-}
-
-.header-actions-group {
-  display: flex;
-  gap: 12px;
-}
-
-.category-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.nested-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 12px;
-}
-
 .app-container-wrapper {
   max-width: 1200px;
   width: 90%;
@@ -75,32 +46,24 @@ p {
   border-bottom: 1px solid #e2e8f0;
 }
 
+.header-actions-group {
+  display: flex;
+  gap: 12px;
+}
+
 .app-layout {
   display: flex;
   flex-direction: row;
 }
 
-.form-container-column,
-.preview-column {
-  flex: 1 1 50%;
-  padding: 30px;
-}
-
 .form-container-column {
   border-right: 1px solid #e2e8f0;
+  width: 50%;
+  flex-shrink: 0;
+  padding: 30px;
 }
-
-.delete-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #94a3b8; /* Subtle slate grey initially */
-}
-
-.delete-btn:hover {
-  color: #ef4444; /* Sharp warning red on cursor hover */
+.preview-column {
+  width: 50%;
+  flex-shrink: 0;
+  padding: 30px;
 }

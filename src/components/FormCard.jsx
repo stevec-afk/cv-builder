@@ -1,3 +1,5 @@
+import "./FormCard.css";
+
 function FormCard(props) {
   const { fields, data, onFieldChange } = props;
 
