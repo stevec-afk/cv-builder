@@ -1,5 +1,7 @@
 # CV Builder
 
+Live preview: [https://cv-builder-liard-three.vercel.app/](https://cv-builder-liard-three.vercel.app/)
+
 A minimal, professional resume builder application that allows users to input their information and view a formatted preview in real time. This project was developed as part of The Odin Project curriculum.
 
 ## Project Details
