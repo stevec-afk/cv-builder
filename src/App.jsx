@@ -17,15 +17,32 @@ const defaultCvData = {
       dateFrom: "2018",
       dateTo: "2022",
     },
+    {
+      id: "edu-2",
+      school: "Community College",
+      degree: "Advanced Diploma in Web Development",
+      dateFrom: "2016",
+      dateTo: "2018",
+    },
   ],
   experience: [
     {
       id: "exp-1",
       company: "Tech Corp Inc.",
+      position: "Senior Frontend Developer",
+      dateFrom: "2024",
+      dateTo: "Present",
+      description:
+        "Led a team of developers to rebuild the core application dashboard.\nOptimized rendering performance and established clean state management patterns.",
+    },
+    {
+      id: "exp-2",
+      company: "Web Solutions Ltd.",
       position: "Frontend Developer",
       dateFrom: "2022",
-      dateTo: "Present",
-      description: "Developed user interfaces.",
+      dateTo: "2024",
+      description:
+        "Built responsive user interfaces for corporate client web applications.\nCollaborated closely with design teams to translate wireframes into clean, interactive code frameworks.",
     },
   ],
 };
@@ -108,14 +125,13 @@ function App() {
           <h1>CV Builder</h1>
           <div className="project-credits">
             <p className="credits-author">
-              Built by{" "}
-              <a href="https://github.com" target="_blank" rel="noreferrer">
+              Made by{" "}
+              <a
+                href="https://github.com/stevec-afk/cv-builder"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Steve C.
-              </a>
-            </p>
-            <p className="credits-source">
-              <a href="https://github.com/cv-builder" target="_blank" rel="noreferrer">
-                view source code on github
               </a>
             </p>
           </div>
@@ -132,13 +148,16 @@ function App() {
       </header>
 
       <div className="app-layout">
-        <FormContainer
-          cvData={cvData}
-          onFormChange={handleFormChange}
-          onAddEducation={handleAddEducation}
-          onAddExperience={handleAddExperience}
-          onDeleteItem={handleDeleteItem}
-        />
+        <div className="form-workspace-wrapper">
+          <FormContainer
+            cvData={cvData}
+            onFormChange={handleFormChange}
+            onAddEducation={handleAddEducation}
+            onAddExperience={handleAddExperience}
+            onDeleteItem={handleDeleteItem}
+          />
+          <div className="scroll-fade-mask"></div>
+        </div>
         <Preview cvData={cvData} />
       </div>
     </div>
