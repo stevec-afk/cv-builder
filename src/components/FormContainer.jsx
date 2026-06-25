@@ -32,7 +32,7 @@ function FormContainer(props) {
   return (
     <div className="form-container-column">
       {/*Personal Details section */}
-      <FormSection title="Personal Details">
+      <FormSection title="Personal Details" defaultOpen={true}>
         <FormCard
           fields={personalFields}
           data={general}
@@ -43,6 +43,10 @@ function FormContainer(props) {
       </FormSection>
       {/*Experience Section*/}
       <FormSection title="Professional Experience">
+        <button type="button" onClick={onAddExperience} className="add-btn">
+          + Add Experience
+        </button>
+
         {experience.map((exp) => (
           <div key={exp.id} className="nested-row-item-card">
             <div className="nested-card-header">
@@ -65,12 +69,12 @@ function FormContainer(props) {
             />
           </div>
         ))}
-        <button type="button" onClick={onAddExperience} className="add-btn">
-          + Add Experience
-        </button>
       </FormSection>
       {/*Education Section*/}
       <FormSection title="Education">
+        <button type="button" onClick={onAddEducation} className="add-btn">
+          + Add Education
+        </button>
         {education.map((edu) => (
           <div key={edu.id} className="nested-row-item-card">
             <div className="nested-card-header">
@@ -93,9 +97,6 @@ function FormContainer(props) {
             />
           </div>
         ))}
-        <button type="button" onClick={onAddEducation} className="add-btn">
-          + Add Education
-        </button>
       </FormSection>
     </div>
   );

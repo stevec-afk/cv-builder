@@ -3,8 +3,8 @@ import Icon from "./Icons";
 import "./FormSection.css";
 
 function FormSection(props) {
-  const { title, children } = props;
-  const [isOpen, setIsOpen] = useState(false);
+  const { title, children, defaultOpen = false } = props;
+  const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
     <div className="section-group">
@@ -16,7 +16,17 @@ function FormSection(props) {
           className="collapse-toggle-btn"
           aria-label={isOpen ? "Close section" : "Open section"}
         >
-          {isOpen ? <Icon name="check" /> : <Icon name="edit" />}
+          {isOpen ? (
+            <>
+              <Icon name="check" />
+              <span>Save</span>
+            </>
+          ) : (
+            <>
+              <Icon name="edit" />
+              <span>Edit</span>
+            </>
+          )}
         </button>
       </div>
 
