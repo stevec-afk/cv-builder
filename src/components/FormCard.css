@@ -54,3 +54,10 @@
   min-height: 75px;
   resize: vertical;
 }
+
+.input-group input:focus-visible,
+.input-group textarea:focus-visible {
+  outline: none;
+  border-color: var(--bg-header);
+  box-shadow: 0 0 0 2px rgba(51, 65, 85, 0.15);
+}
